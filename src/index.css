@@ -74,22 +74,18 @@
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-.action-button:last-child {
-  border-bottom: none;
+.action-button:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.action-button.delete:hover {
+  background-color: rgba(255, 77, 79, 0.1);
 }
 
 .action-button ion-icon {
   font-size: 20px;
   min-width: 24px;
   margin-left: auto;
-}
-
-.action-button:hover {
-  background-color: rgba(255, 255, 255, 0.1);
-}
-
-.action-button.delete {
-  color: #ff4d4f;
 }
 
 .reaction-menu {
