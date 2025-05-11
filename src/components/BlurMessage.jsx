@@ -7,6 +7,7 @@ const BlurMessage = () => {
   let pressTimer;
   const [focusedMessageId, setFocusedMessageId] = useState(null);
   const [showEmojiPicker, setShowEmojiPicker] = useState(false);
+  const [showActionModal, setShowActionModal] = useState(false);
   const [messages] = useState([
     { id: 1, text: "Hello there!" },
     { id: 2, text: "How are you?" },
@@ -20,7 +21,7 @@ const BlurMessage = () => {
 
     if (tapInterval < 300) {
       // Double tap detected
-      handleReaction(messageId, { apple: "👍" });
+      handleReaction(messageId, { native: "👍" });
     }
 
     setLastTapTime(currentTime);
@@ -29,7 +30,7 @@ const BlurMessage = () => {
   function startLongPressTimer(id) {
     pressTimer = setTimeout(() => {
       setFocusedMessageId(id);
-      setShowEmojiPicker(true);
+      setShowActionModal(true);
     }, 500);
   }
 
@@ -41,13 +42,49 @@ const BlurMessage = () => {
     console.log(`Added ${emoji.native} to message ${messageId}`);
     setFocusedMessageId(null);
     setShowEmojiPicker(false);
+    setShowActionModal(false);
   }
 
   function handleReply(messageId) {
-    // Handle reply here
     console.log(`Replying to message ${messageId}`);
     setFocusedMessageId(null);
     setShowEmojiPicker(false);
+    setShowActionModal(false);
+  }
+
+  function handleCopy(messageId) {
+    console.log(`Copying to message ${messageId}`);
+    setFocusedMessageId(null);
+    setShowEmojiPicker(false);
+    setShowActionModal(false);
+  }
+
+  function handlePin(messageId) {
+    console.log(`Pinned a message ${messageId}`);
+    setFocusedMessageId(null);
+    setShowEmojiPicker(false);
+    setShowActionModal(false);
+  }
+
+  function handleForward(messageId) {
+    console.log(`Forwarding a message ${messageId}`);
+    setFocusedMessageId(null);
+    setShowEmojiPicker(false);
+    setShowActionModal(false);
+  }
+
+  function handleDelete(messageId) {
+    console.log(`Deleting message ${messageId}`);
+    setFocusedMessageId(null);
+    setShowEmojiPicker(false);
+    setShowActionModal(false);
+  }
+
+  function handleReport(messageId) {
+    console.log(`Report a message ${messageId}`);
+    setFocusedMessageId(null);
+    setShowEmojiPicker(false);
+    setShowActionModal(false);
   }
 
   return (
@@ -64,18 +101,79 @@ const BlurMessage = () => {
             onClick={() => handleTap(msg.id)}
           >
             {msg.text}
-            {focusedMessageId === msg.id && (
+            {focusedMessageId === msg.id && showActionModal && (
+              <div className="action-modal">
+                <button
+                  onClick={() => handleReply(msg.id)}
+                  className="action-button"
+                >
+                  <ion-icon name="arrow-undo-outline"></ion-icon>
+                  Reply
+                </button>
+
+                <button
+                  onClick={() => handleCopy(msg.id)}
+                  className="action-button"
+                >
+                  <ion-icon name="copy-outline"></ion-icon>
+                  Copy
+                </button>
+
+                <button
+                  onClick={() => handlePin(msg.id)}
+                  className="action-button"
+                >
+                  <ion-icon name="pin-outline"></ion-icon>
+                  Pin
+                </button>
+
+                <button
+                  onClick={() => handleForward(msg.id)}
+                  className="action-button"
+                >
+                  <ion-icon name="arrow-redo-outline"></ion-icon>
+                  Forward
+                </button>
+
+                <button
+                  onClick={() => handleDelete(msg.id)}
+                  className="action-button delete"
+                >
+                  <ion-icon name="trash-outline"></ion-icon>
+                  Delete
+                </button>
+                <button
+                  onClick={() => handleReport(msg.id)}
+                  className="action-button"
+                >
+                  <ion-icon name="alert-circle-outline"></ion-icon>
+                  Report
+                </button>
+                <button
+                  onClick={() => {
+                    setShowActionModal(false);
+                    setShowEmojiPicker(true);
+                  }}
+                  className="action-button"
+                >
+                  <ion-icon name="add-circle-outline"></ion-icon>
+                  Add Reaction
+                </button>
+              </div>
+            )}
+            {focusedMessageId === msg.id && showEmojiPicker && (
               <div className="reaction-menu">
-                {showEmojiPicker && (
-                  <Picker
-                    data={data}
-                    onEmojiSelect={(emoji) => handleReaction(msg.id, emoji)}
-                    theme="light"
-                    previewPosition="none"
-                    skinTonePosition="none"
-                  />
-                )}
-                <button onClick={() => handleReply(msg.id)}></button>
+                <Picker
+                  data={data}
+                  onEmojiSelect={(emoji) => handleReaction(msg.id, emoji)}
+                  theme="light"
+                  previewPosition="none"
+                  skinTonePosition="none"
+                  perLine={7}
+                  maxFrequentRows={2}
+                  emojiSize={20}
+                  emojiButtonSize={28}
+                />
               </div>
             )}
           </div>
@@ -88,6 +186,7 @@ const BlurMessage = () => {
           onClick={() => {
             setFocusedMessageId(null);
             setShowEmojiPicker(false);
+            setShowActionModal(false);
           }}
         />
       )}
