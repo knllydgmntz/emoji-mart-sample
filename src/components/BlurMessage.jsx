@@ -15,6 +15,16 @@ const BlurMessage = () => {
   ]);
   const [lastTapTime, setLastTapTime] = useState(0);
 
+  const quickEmojis = [
+    { id: "heart", native: "❤️" },
+    { id: "thumbsup", native: "👍" },
+    { id: "hearteyes", native: "😍" },
+    { id: "approve", native: "👌" },
+    { id: "handshake", native: "🤝" },
+    { id: "rolling_on_the_floor_laughing", native: "🤣" },
+    { id: "face blowing kiss", native: "😘" },
+  ];
+
   function handleTap(messageId) {
     const currentTime = new Date().getTime();
     const tapInterval = currentTime - lastTapTime;
@@ -100,6 +110,19 @@ const BlurMessage = () => {
             onPointerUp={cancelLongPress}
             onClick={() => handleTap(msg.id)}
           >
+            {focusedMessageId === msg.id && showActionModal && (
+              <div className="quick-reactions">
+                {quickEmojis.map((emoji) => (
+                  <button
+                    key={emoji.id}
+                    className="quick-reaction-button"
+                    onClick={() => handleReaction(msg.id, emoji)}
+                  >
+                    {emoji.native}
+                  </button>
+                ))}
+              </div>
+            )}
             {msg.text}
             {focusedMessageId === msg.id && showActionModal && (
               <div className="action-modal">
