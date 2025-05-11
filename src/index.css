@@ -78,6 +78,10 @@
   background-color: rgba(255, 255, 255, 0.1);
 }
 
+.action-button.delete {
+  color: #ff4d4f;
+}
+
 .action-button.delete:hover {
   background-color: rgba(255, 77, 79, 0.1);
 }
