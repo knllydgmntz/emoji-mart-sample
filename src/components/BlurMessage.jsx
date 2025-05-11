@@ -107,47 +107,47 @@ const BlurMessage = () => {
                   onClick={() => handleReply(msg.id)}
                   className="action-button"
                 >
-                  <ion-icon name="arrow-undo-outline"></ion-icon>
                   Reply
+                  <ion-icon name="arrow-undo-outline"></ion-icon>
                 </button>
 
                 <button
                   onClick={() => handleCopy(msg.id)}
                   className="action-button"
                 >
-                  <ion-icon name="copy-outline"></ion-icon>
                   Copy
+                  <ion-icon name="copy-outline"></ion-icon>
                 </button>
 
                 <button
                   onClick={() => handlePin(msg.id)}
                   className="action-button"
                 >
-                  <ion-icon name="pin-outline"></ion-icon>
                   Pin
+                  <ion-icon name="pin-outline"></ion-icon>
                 </button>
 
                 <button
                   onClick={() => handleForward(msg.id)}
                   className="action-button"
                 >
-                  <ion-icon name="arrow-redo-outline"></ion-icon>
                   Forward
+                  <ion-icon name="arrow-redo-outline"></ion-icon>
                 </button>
 
                 <button
                   onClick={() => handleDelete(msg.id)}
                   className="action-button delete"
                 >
-                  <ion-icon name="trash-outline"></ion-icon>
                   Delete
+                  <ion-icon name="trash-outline"></ion-icon>
                 </button>
                 <button
                   onClick={() => handleReport(msg.id)}
                   className="action-button"
                 >
-                  <ion-icon name="alert-circle-outline"></ion-icon>
                   Report
+                  <ion-icon name="alert-circle-outline"></ion-icon>
                 </button>
                 <button
                   onClick={() => {
@@ -156,8 +156,8 @@ const BlurMessage = () => {
                   }}
                   className="action-button"
                 >
-                  <ion-icon name="add-circle-outline"></ion-icon>
                   Add Reaction
+                  <ion-icon name="add-circle-outline"></ion-icon>
                 </button>
               </div>
             )}
